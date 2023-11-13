@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.muratalarcin.filmlerapp.R;
+import com.muratalarcin.filmlerapp.data.entity.Filmler;
 import com.muratalarcin.filmlerapp.databinding.FragmentDetayBinding;
 
 public class DetayFragment extends Fragment {
@@ -18,7 +19,14 @@ public class DetayFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentDetayBinding.inflate(inflater, container,false);
 
+        DetayFragmentArgs bundle = DetayFragmentArgs.fromBundle(getArguments());
+        Filmler film = bundle.getFilm();
 
+        binding.toolbarDetay.setTitle(film.getAd());
+
+        binding.ivFilm.setImageResource(getResources().getIdentifier(
+                film.getResim(), "drawable", requireContext().getPackageName()
+        ));
 
         return binding.getRoot();
     }
